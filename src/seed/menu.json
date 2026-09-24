@@ -1,0 +1,26 @@
+[
+  {
+    "id": "meatpie",
+    "name": "Meat Pie",
+    "desc": "Flaky, golden pastry filled with seasoned minced meat.",
+    "price": 800,
+    "stock": 15,
+    "photo": "/images/meatpie.jpg"
+  },
+  {
+    "id": "buns",
+    "name": "Buns",
+    "desc": "Soft, golden fried buns with a fluffy centre.",
+    "price": 300,
+    "stock": 20,
+    "photo": "/images/buns.jpg"
+  },
+  {
+    "id": "sausageroll",
+    "name": "Sausage Roll",
+    "desc": "Buttery, flaky pastry wrapped around savoury sausage.",
+    "price": 300,
+    "stock": 12,
+    "photo": "/images/sausageroll.jpg"
+  }
+]

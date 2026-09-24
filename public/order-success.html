@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order status — Snack Corner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <main style="min-height:90vh; display:flex; align-items:center; justify-content:center; padding:24px;">
+    <div class="login-box" style="max-width:440px; text-align:center;">
+      <h2 id="statusHeading">Checking your payment…</h2>
+      <p id="statusText" class="note-small">One moment while we confirm this with Paystack.</p>
+      <div class="order-actions" style="justify-content:center; margin-top:14px;">
+        <a href="/" class="btn btn-solid">Back to Snack Corner</a>
+        <a href="#" id="waLink" class="btn" target="_blank" rel="noopener" style="display:none;">Message us on WhatsApp</a>
+      </div>
+    </div>
+  </main>
+  <script>
+    (async function () {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("orderId");
+      const heading = document.getElementById("statusHeading");
+      const text = document.getElementById("statusText");
+      const waLink = document.getElementById("waLink");
+
+      if (!orderId) {
+        heading.textContent = "No order found";
+        text.textContent = "We couldn't find which order this was for.";
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/orders/" + orderId + "/verify", { credentials: "include" });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Could not check this order.");
+
+        const [configRes] = await Promise.all([fetch("/api/config")]);
+        const config = await configRes.json();
+
+        if (data.order.paid) {
+          heading.textContent = "Payment received! 🎉";
+          text.textContent = "Order #" + data.order.id.slice(0, 8) + " for ₦" + data.order.total.toLocaleString() + " is confirmed.";
+        } else {
+          heading.textContent = "Payment not confirmed yet";
+          text.textContent = "Status: " + (data.order.status || "pending") + ". If you completed payment, message us to confirm.";
+        }
+        waLink.style.display = "inline-block";
+        waLink.href = "https://wa.me/" + config.whatsappNumber + "?text=" +
+          encodeURIComponent("Hi! Checking on my order #" + data.order.id.slice(0, 8));
+      } catch (err) {
+        heading.textContent = "Something went wrong";
+        text.textContent = err.message;
+      }
+    })();
+  </script>
+</body>
+</html>

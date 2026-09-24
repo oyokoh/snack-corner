@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Snack Corner — fresh snacks, made to order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Caveat:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="bg-doodles" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="foodDoodles" width="260" height="260" patternUnits="userSpaceOnUse" patternTransform="rotate(-6)">
+        <g fill="none" stroke="#9E1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="translate(18,20)">
+            <circle cx="14" cy="18" r="13"/><circle cx="34" cy="10" r="10"/><circle cx="30" cy="30" r="9"/>
+          </g>
+          <g transform="translate(140,10)">
+            <path d="M4 26 l6 24 h24 l6 -24 z"/>
+            <path d="M2 26 h40"/>
+            <path d="M8 24 q6 -22 12 0 q6 -22 12 0 q6 -22 8 0"/>
+            <circle cx="22" cy="4" r="3"/>
+          </g>
+          <g transform="translate(30,120)">
+            <path d="M0 30 A26 18 0 0 1 52 30 Z"/>
+            <path d="M6 28 q6 -5 12 0 q6 -5 12 0 q6 -5 12 0"/>
+          </g>
+          <g transform="translate(170,110)">
+            <path d="M6 14 l-5 46 h30 l-5 -46 z"/>
+            <path d="M0 14 h32"/>
+            <path d="M22 -2 q5 9 -2 18"/>
+          </g>
+          <g transform="translate(70,190)">
+            <path d="M0 14 l10 -10 10 10 -10 10 z"/>
+            <path d="M22 4 l8 -8 8 8 -8 8 z"/>
+          </g>
+          <g transform="translate(190,200)">
+            <circle cx="20" cy="20" r="19"/>
+            <circle cx="14" cy="14" r="2" fill="#9E1B33"/>
+            <circle cx="26" cy="12" r="2" fill="#9E1B33"/>
+            <circle cx="24" cy="26" r="2" fill="#9E1B33"/>
+            <circle cx="12" cy="26" r="2" fill="#9E1B33"/>
+          </g>
+        </g>
+      </pattern>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#foodDoodles)"/>
+  </svg>
+</div>
+
+<header>
+  <nav class="wrap">
+    <a href="#home" class="brand">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="30" cy="30" r="24" stroke="var(--ink)" stroke-width="2.5"/>
+        <path d="M18 34c3 6 8 9 12 9s9-3 12-9" stroke="var(--chili)" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="2.4" fill="var(--ink)"/>
+        <circle cx="34" cy="22" r="2.4" fill="var(--ink)"/>
+        <circle cx="30" cy="30" r="1.8" fill="var(--mustard)"/>
+      </svg>
+      <span class="brand-name" id="brandName">Snack Corner</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#order" class="needs-login">Order</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#order" class="cart-pill needs-login">🧺 <span id="navCartCount">0</span></a></li>
+      <li id="navSignedOut"><a href="#login" class="btn btn-small">Sign in</a></li>
+      <li id="navSignedIn" style="display:none;">👋 <span id="navCustomerName"></span> <span style="opacity:.6;">·</span> <a href="#" id="navLogout">Log out</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- ================= HOME ================= -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <span class="tag">hand-made, fresh, delivered warm</span>
+      <h1 id="heroBrand">Snack Corner</h1>
+      <p class="sub">Small-batch puff-puff, chin chin, meat pies and more — mixed, fried and packed the same day you order. Pick what you fancy and we'll sort the rest.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-solid">See the menu</a>
+        <a href="#order" class="btn needs-login">Place an order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LOGIN ================= -->
+  <section id="login" class="pad">
+    <div class="wrap login-wrap">
+      <div class="section-head">
+        <span class="tag">before you order</span>
+        <h2>Sign in to place an order</h2>
+        <p>Browsing the menu is free — sign in with a name and password before you check out.</p>
+      </div>
+      <div class="login-box" id="loginBox">
+        <div class="field">
+          <label for="loginName">Your name</label>
+          <input id="loginName" type="text" placeholder="e.g. christy oyiwodu" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" placeholder="Choose or enter your password" autocomplete="current-password">
+        </div>
+        <button type="button" class="btn btn-solid" id="loginSubmit">Continue</button>
+        <p class="note-small">First time here? Just pick any password — we'll set up your account.</p>
+        <p class="note-small" id="loginError" style="display:none;"></p>
+      </div>
+      <div class="login-box" id="loggedInBox" style="display:none;">
+        <p>You're signed in as <strong id="loggedInName"></strong>.</p>
+        <div class="order-actions">
+          <a href="#order" class="btn btn-solid">Start your order</a>
+          <button type="button" class="btn btn-small" id="logoutBtn2">Log out</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MENU ================= -->
+  <section id="menu" class="alt pad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">today's tray</span>
+        <h2>The menu</h2>
+        <p>Everything is made fresh in small batches, so a couple of items may sell out on busy days. Prices are per portion.</p>
+      </div>
+      <div class="menu-grid" id="menuGrid">
+        <p class="note-small">Loading menu…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ORDER ================= -->
+  <section id="order" class="pad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">almost there</span>
+        <h2>Your order</h2>
+        <p>Add snacks from the menu above, fill in your details, then pay to send your order through.</p>
+      </div>
+      <div class="order-layout">
+        <div class="receipt">
+          <h3>🧾 Order summary</h3>
+          <div id="cartLines"><p class="empty">Your basket is empty — add something tasty from the menu.</p></div>
+          <div class="cart-total" id="cartTotalRow" style="display:none;">
+            <span>Total</span><span id="cartTotal">₦0</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="order-form">
+            <div class="field">
+              <label for="custEmail">Email (needed for card/transfer payment)</label>
+              <input id="custEmail" type="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="custPhone">Phone number</label>
+              <input id="custPhone" type="tel" placeholder="e.g. 080 1234 5678" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="custAddress">Delivery address (or "pickup")</label>
+              <textarea id="custAddress" placeholder="Street, area, landmark..."></textarea>
+            </div>
+            <div class="field">
+              <label for="custNotes">Notes (optional)</label>
+              <textarea id="custNotes" placeholder="Anything we should know — spice level, delivery time, etc."></textarea>
+            </div>
+
+            <div class="order-actions">
+              <button class="btn btn-chili" id="checkoutBtn">Pay &amp; send order</button>
+            </div>
+            <p class="note-small" id="orderMessage"></p>
+
+            <div class="payment-box" id="manualPaymentBox" style="display:none;">
+              <h3 style="margin-bottom:.4em;">💳 Pay by bank transfer</h3>
+              <div class="kv"><span class="k">Bank</span><span class="v" id="orderBankName"></span></div>
+              <div class="kv"><span class="k">Account name</span><span class="v" id="orderAccountName"></span></div>
+              <div class="kv"><span class="k">Account number</span><span class="v" id="orderAccountNumber"></span></div>
+              <p class="note-small">Your order has been recorded. Send payment to the account above, then message us on WhatsApp to confirm.</p>
+              <div class="order-actions">
+                <a href="#" id="whatsappConfirmLink" class="btn btn-solid" target="_blank" rel="noopener">Confirm on WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="alt pad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">say hello</span>
+        <h2>Contact &amp; payment</h2>
+        <p>Questions about an order, bulk requests, or just want to say hi? Reach us any of these ways.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="note-card">
+          <h3>📞 Call or WhatsApp</h3>
+          <div class="kv"><span class="k">Phone</span><span class="v" id="contactPhone">—</span></div>
+          <div style="margin-top:16px;">
+            <a class="btn btn-small" id="waLinkBtn" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div class="note-card">
+          <h3>🏦 Bank transfer</h3>
+          <div class="kv"><span class="k">Bank</span><span class="v" id="bankName">—</span></div>
+          <div class="kv"><span class="k">Account name</span><span class="v" id="accountName">—</span></div>
+          <div class="kv"><span class="k">Account number</span><span class="v" id="accountNumber">—</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="tag">thanks for stopping by 🍪</span>
+  <p id="footerBrand">Snack Corner</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
